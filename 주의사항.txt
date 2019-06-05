@@ -1,0 +1,2 @@
+# 이 프로그램 PyQt5없으면 안돌아가요...!
+# PyQt5 설치 방법 링크 : https://mainia.tistory.com/5604
