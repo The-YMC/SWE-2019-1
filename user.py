@@ -16,16 +16,21 @@ class User():
         
     def roll(self):
         yut = [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1)]
+
         if sum(yut) == 1:
-            n_roll = 1
+            if yut[0] == 1:
+                n_roll = -1
+            else:
+                n_roll = 1
         elif sum(yut) == 2:
             n_roll = 2
         elif sum(yut) == 3:
             n_roll = 3
         elif sum(yut) == 4:
             n_roll = 4
-        else:
+        elif sum(yut) == 5:
             n_roll = 5
+                
         return n_roll
 
 
