@@ -112,7 +112,9 @@ class Map():
             else:
                 self.change_info(map_index, 29)
         elif not self.map_list[map_index][0] and self.map_list[map_index][1] == None:
-            if map_index + n_roll > 20:
+            if map_index == 0 and n_roll != -1:
+                self.change_info(map_index, 29)
+            elif map_index + n_roll > 20:
                 self.change_info(map_index, 29)
             elif map_index + n_roll == 20:
                 self.change_info(map_index, 0)

@@ -21,7 +21,7 @@ class TestLogic():
     """
     윷판의 말이 제대로 도착했는지 확인하는 Unit Test Class
     """
-    def assertEqual(x, y):
+    def assertEqual(self, x, y):
         if x != y:
             raise AssertionError("Error")
     
@@ -86,8 +86,8 @@ class TestLogic():
             self.assertEqual(map_result[0][2], user_info)
             self.assertEqual(map_result[0][3], n_piece)
         else:
-            self.assertEqual(in_goal[user_info], 1)
-            self.assertEqual(in_goal[user_info], 1)
+            self.assertEqual(in_goal[user_info], n_piece)
+            self.assertEqual(in_goal[user_info], n_piece)
     
     def is_goal(self, user_info, n_piece):
         """
@@ -110,7 +110,7 @@ class TestLogic():
         map_result, remained, turn, _ = tmap.select(1, 4, user_info1)
         self.assertEqual(map_result[5][2], user_info1)
         self.assertEqual(map_result[5][3], n_piece1)
-        self.assertEqual(remained[1], 4)
+        self.assertEqual(remained[user_info2], 4)
         self.assertEqual(turn, user_info1)
         
     def back_do1(self, user_info, n_piece):
@@ -198,6 +198,4 @@ class TestLogic():
         map_result, _ , _ , _ = tmap.select(-1, 0, user_info)
         self.assertEqual(map_result[27][2], user_info)
         self.assertEqual(map_result[27][3], n_piece)
-    
-        
-        
+
