@@ -82,8 +82,6 @@ class Map():
                 elif self.map_list[map_index][1] == '27':
                     self.change_info(map_index, 27)
                     
-                elif self.map_list[map_index][1] == '1':
-                    self.change_info(map_index, 1)
             elif map_index == 28:
                 if self.map_list[map_index][1] == 'up':
                     self.change_info(map_index, 21)
@@ -187,9 +185,7 @@ class Map():
             self.map_list[destination][1] = self.map_list[departure][1]
         
         elif destination == 0:
-            if departure == 1:
-                self.map_list[destination][1] = "1"
-            elif departure < 20:
+            if departure < 20:
                 self.map_list[destination][1] = "19"
             else:
                 self.map_list[destination][1] = "27"
@@ -234,9 +230,6 @@ class Map():
             self.user_info = (self.user_info + 1)%4
             
 
-
-
-ad = Map()
 
 
 
