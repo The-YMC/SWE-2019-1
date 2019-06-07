@@ -26,6 +26,9 @@ class Contoller():
         else:
             self.n_roll = 5
     
+    def conditional_roll(self, num):
+        self.n_roll = num
+        
     def map_clicked(self, map_index):
         if self.n_roll != 0 :
             print(self.n_roll, map_index, self.next_turn)

@@ -34,7 +34,7 @@ class UI_Dialog_03(object):
             print(self.viewmapinfo, self.remainedpiece)
             self.action = 2
             self.update_ui()
-            string = str(self.next_turn + 1) + "의 턴 입니다."
+            string = str(self.next_turn + 1) + "의 턴 입니다. 윷을 던져주세요."
             self.turn.setText(string)
             
     def update_ui(self):
@@ -162,19 +162,19 @@ class UI_Dialog_03(object):
                     temp = btn_list[j]                              
                     temp.setGraphicsEffect(opacity_effect)
                     if self.viewmapinfo[j][3] == 1:
-                        temp.setIcon(QtGui.QIcon("1.PNG"))
+                        temp.setIcon(QtGui.QIcon("1.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     if self.viewmapinfo[j][3] == 2:
-                        temp.setIcon(QtGui.QIcon("1-2.PNG"))
+                        temp.setIcon(QtGui.QIcon("1-2.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     if self.viewmapinfo[j][3] == 3:
-                        temp.setIcon(QtGui.QIcon("1-3.PNG"))
+                        temp.setIcon(QtGui.QIcon("1-3.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     if self.viewmapinfo[j][3] == 4:
-                        temp.setIcon(QtGui.QIcon("1-4.PNG"))
+                        temp.setIcon(QtGui.QIcon("1-4.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     if self.viewmapinfo[j][3] == 5:
-                        temp.setIcon(QtGui.QIcon("1-5.PNG"))
+                        temp.setIcon(QtGui.QIcon("1-5.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     
                 elif self.viewmapinfo[j][2] == 1:
@@ -183,19 +183,19 @@ class UI_Dialog_03(object):
                     temp = btn_list[j]                              
                     temp.setGraphicsEffect(opacity_effect)
                     if self.viewmapinfo[j][3] == 1:
-                        temp.setIcon(QtGui.QIcon("2.PNG"))
+                        temp.setIcon(QtGui.QIcon("2.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     if self.viewmapinfo[j][3] == 2:
-                        temp.setIcon(QtGui.QIcon("2-2.PNG"))
+                        temp.setIcon(QtGui.QIcon("2-2.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     if self.viewmapinfo[j][3] == 3:
-                        temp.setIcon(QtGui.QIcon("2-3.PNG"))
+                        temp.setIcon(QtGui.QIcon("2-3.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     if self.viewmapinfo[j][3] == 4:
-                        temp.setIcon(QtGui.QIcon("2-4.PNG"))
+                        temp.setIcon(QtGui.QIcon("2-4.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     if self.viewmapinfo[j][3] == 5:
-                        temp.setIcon(QtGui.QIcon("2-5.PNG"))
+                        temp.setIcon(QtGui.QIcon("2-5.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     
                 
@@ -205,19 +205,19 @@ class UI_Dialog_03(object):
                     temp = btn_list[j]                              
                     temp.setGraphicsEffect(opacity_effect)
                     if self.viewmapinfo[j][3] == 1:
-                        temp.setIcon(QtGui.QIcon("3.PNG"))
+                        temp.setIcon(QtGui.QIcon("3.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     if self.viewmapinfo[j][3] == 2:
-                        temp.setIcon(QtGui.QIcon("3-2.PNG"))
+                        temp.setIcon(QtGui.QIcon("3-2.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     if self.viewmapinfo[j][3] == 3:
-                        temp.setIcon(QtGui.QIcon("3-3.PNG"))
+                        temp.setIcon(QtGui.QIcon("3-3.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     if self.viewmapinfo[j][3] == 4:
-                        temp.setIcon(QtGui.QIcon("3-4.PNG"))
+                        temp.setIcon(QtGui.QIcon("3-4.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     if self.viewmapinfo[j][3] == 5:
-                        temp.setIcon(QtGui.QIcon("3-5.PNG"))
+                        temp.setIcon(QtGui.QIcon("3-5.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     
                 elif self.viewmapinfo[j][2] == 3:
@@ -226,19 +226,19 @@ class UI_Dialog_03(object):
                     temp = btn_list[j]                              
                     temp.setGraphicsEffect(opacity_effect)
                     if self.viewmapinfo[j][3] == 1:
-                        temp.setIcon(QtGui.QIcon("4.PNG"))
+                        temp.setIcon(QtGui.QIcon("4.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     if self.viewmapinfo[j][3] == 2:
-                        temp.setIcon(QtGui.QIcon("4-2.PNG"))
+                        temp.setIcon(QtGui.QIcon("4-2.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     if self.viewmapinfo[j][3] == 3:
-                        temp.setIcon(QtGui.QIcon("4-3.PNG"))
+                        temp.setIcon(QtGui.QIcon("4-3.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     if self.viewmapinfo[j][3] == 4:
-                        temp.setIcon(QtGui.QIcon("4-4.PNG"))
+                        temp.setIcon(QtGui.QIcon("4-4.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     if self.viewmapinfo[j][3] == 5:
-                        temp.setIcon(QtGui.QIcon("4-5.PNG"))
+                        temp.setIcon(QtGui.QIcon("4-5.png"))
                         temp.setIconSize(QtCore.QSize(200,200))
                     
                     
@@ -249,6 +249,48 @@ class UI_Dialog_03(object):
         if self.action == 0:
             self.controller.roll()
             self.action = 1
+            if self.controller.n_roll == 1:
+                string =  "도가 나왔습니다. 움직일 말을 골라주세요."
+            elif self.controller.n_roll == 2:
+                string =  "개가 나왔습니다. 움직일 말을 골라주세요."
+            elif self.controller.n_roll == 3:
+                string =  "걸이 나왔습니다. 움직일 말을 골라주세요."
+            elif self.controller.n_roll == 4:
+                string =  "윷이 나왔습니다. 움직일 말을 골라주세요."
+            elif self.controller.n_roll == 5:
+                string =  "모가 나왔습니다. 움직일 말을 골라주세요."
+            else:
+                string = "빽도가 나왔습니다. 움직일 말을 골라주세요."
+            self.turn.setText(string)
+    def backdo(self):
+        if self.action == 0:
+            self.controller.conditional_roll(-1)
+            self.action = 1
+    def do(self):
+        if self.action == 0:
+            self.controller.conditional_roll(1)
+            self.action = 1
+    
+    def gae(self):
+        if self.action == 0:
+            self.controller.conditional_roll(2)
+            self.action = 1
+    
+    def geol(self):
+        if self.action == 0:
+            self.controller.conditional_roll(3)
+            self.action = 1
+    
+    def yut(self):
+        if self.action == 0:
+            self.controller.conditional_roll(4)
+            self.action = 1
+    
+    def mo(self):
+        if self.action == 0:
+            self.controller.conditional_roll(5)
+            self.action = 1
+    
     def button_Click00(self):
         self.map_clicked(0)
     def button_Click01(self):
@@ -356,6 +398,7 @@ class UI_Dialog_03(object):
         font.setPointSize(20)
         self.Do_Btn.setFont(font)
         self.Do_Btn.setObjectName("Do_Btn")
+        self.Do_Btn.clicked.connect(self.do)
 
         # 지정 윷 던지기 - 개
         self.Ge_btn = QtWidgets.QPushButton(Dialog)
@@ -365,6 +408,7 @@ class UI_Dialog_03(object):
         font.setPointSize(20)
         self.Ge_btn.setFont(font)
         self.Ge_btn.setObjectName("Ge_btn")
+        self.Ge_btn.clicked.connect(self.gae)
 
         # 지정 윷 던지기 - 걸
         self.Gul_btn = QtWidgets.QPushButton(Dialog)
@@ -374,6 +418,7 @@ class UI_Dialog_03(object):
         font.setPointSize(20)
         self.Gul_btn.setFont(font)
         self.Gul_btn.setObjectName("Gul_btn")
+        self.Gul_btn.clicked.connect(self.geol)
 
         # 지정 윷 던지기 - 윷
         self.Yut_btn = QtWidgets.QPushButton(Dialog)
@@ -383,6 +428,7 @@ class UI_Dialog_03(object):
         font.setPointSize(20)
         self.Yut_btn.setFont(font)
         self.Yut_btn.setObjectName("Yut_btn")
+        self.Yut_btn.clicked.connect(self.yut)
 
         # 지정 윷 던지기 - 모
         self.Mo_btn = QtWidgets.QPushButton(Dialog)
@@ -392,6 +438,7 @@ class UI_Dialog_03(object):
         font.setPointSize(20)
         self.Mo_btn.setFont(font)
         self.Mo_btn.setObjectName("Mo_btn")
+        self.Mo_btn.clicked.connect(self.mo)
 
         # 지정 윷 던지기 - 빽도
         self.BackDo_btn = QtWidgets.QPushButton(Dialog)
@@ -401,6 +448,7 @@ class UI_Dialog_03(object):
         font.setPointSize(20)
         self.BackDo_btn.setFont(font)
         self.BackDo_btn.setObjectName("BackDo_btn")
+        self.BackDo_btn.clicked.connect(self.backdo)
 
         # 윷놀이 보드판
         self.Yut_Board = QtWidgets.QLabel(Dialog)
@@ -408,9 +456,9 @@ class UI_Dialog_03(object):
         self.Yut_Board.setObjectName("Yut_Board")
         
         self.turn = QtWidgets.QLabel(Dialog)
-        self.turn.setGeometry(QtCore.QRect(900, 60, 611, 611))
+        self.turn.setGeometry(QtCore.QRect(700, 60, 611, 611))
         self.turn.setObjectName("turn")
-        self.turn.resize(200,20)
+        self.turn.resize(400,20)
 
         self.Do = QtWidgets.QLabel(Dialog)                          # 그림 - 도
         self.Do.setGeometry(QtCore.QRect(780, 480, 131, 101))
