@@ -52,7 +52,7 @@ class Map():
                           [False, 'down', -1, 0], [False, 'down', -1, 0], [False, 'down', -1, 0], [False, 'down', -1, 0],
                           [True, None, -1, 0]]
         
-        self.user_remained = [4, 4, 4, 4]
+        self.user_remained = [5, 5, 5, 5]
         self.in_goal = [0, 0, 0, 0]
         self.winner = -1
     def select(self, n_roll, map_index, user_info):
@@ -98,10 +98,13 @@ class Map():
                     self.change_info(map_index, 23)
                 else:
                     self.change_info(map_index, 14)
+            elif map_index == 0:
+                self.change_info(map_index, 19)
             else:
                 self.change_info(map_index, map_index -1)
             
         elif map_index == 0 and self.map_list[map_index][2] != user_info :
+            self.user_remained[self.user_info] = self.user_remained[self.user_info] -1
             self.change_info(map_index, n_roll, True)
             
         elif map_index == len(self.map_list) - 1:
@@ -201,8 +204,12 @@ class Map():
                 self.map_list[destination][2] = self.user_info
                 
             else:
+                turn_change = False
+                self.user_remained[self.map_list[destination][2]] = self.user_remained[self.map_list[destination][2]] + self.map_list[destination][3]
                 self.map_list[destination][2] = self.user_info
                 self.map_list[destination][3] = 1
+                self.map_list[departure][2] = -1
+                self.map_list[departure][3] = 0
         
         elif destination > 28:
             self.in_goal[self.user_info] = self.in_goal[self.user_info] + self.map_list[departure][3]
@@ -210,20 +217,24 @@ class Map():
             self.map_list[departure][3] = 0
           
         elif self.map_list[destination][2] == self.map_list[departure][2]:
-                self.map_list[destination][3] = self.map_list[destination][3] + self.map_list[departure][3]
-                self.map_list[destination][2] = self.map_list[departure][2]
-                self.map_list[departure][2] = -1
-                self.map_list[departure][3] = 0
+            self.map_list[destination][3] = self.map_list[destination][3] + self.map_list[departure][3]
+            self.map_list[destination][2] = self.map_list[departure][2]
+            self.map_list[departure][2] = -1
+            self.map_list[departure][3] = 0
                 
-        else:
-                if self.map_list[destination][2] != -1:
-                    turn_change = False
-                    self.user_remained[self.map_list[destination][2]] = self.user_remained[self.map_list[destination][2]] + self.map_list[destination][3]
-                self.map_list[destination][2] == self.map_list[departure][2]
-                self.map_list[destination][3] = self.map_list[departure][3]
-                self.map_list[destination][2] = self.map_list[departure][2]
-                self.map_list[departure][2] = -1
-                self.map_list[departure][3] = 0
+        
+        elif self.map_list[destination][2] != -1:
+            turn_change = False
+            self.user_remained[self.map_list[destination][2]] = self.user_remained[self.map_list[destination][2]] + self.map_list[destination][3]
+            self.map_list[destination][3] = self.map_list[departure][3]
+            self.map_list[destination][2] = self.map_list[departure][2]
+            self.map_list[departure][2] = -1
+            self.map_list[departure][3] = 0
+        else: 
+            self.map_list[destination][3] = self.map_list[departure][3]
+            self.map_list[destination][2] = self.map_list[departure][2]
+            self.map_list[departure][2] = -1
+            self.map_list[departure][3] = 0
         
         if self.in_goal[self.user_info] == 4:
                 self.winner = self.user_info
