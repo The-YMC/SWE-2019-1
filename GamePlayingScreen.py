@@ -38,14 +38,6 @@ class UI_Dialog_03(object):
             self.turn.setText(string)
             
     def update_ui(self):
-        self.piece_index = self.remainedpiece + self.in_goal
-        map_coordinates =  [[530, 470, 71, 81], [530, 370, 71, 71], [530, 270, 71, 71], [530, 170, 71, 71],
-                            [560, 80, 93, 101], [470, 90, 71, 71], [380, 90, 71, 71], [290, 90, 71, 71],
-                            [200, 90, 71, 71], [90, 80, 93, 101], [100, 200, 71, 71], [100, 290, 71, 71],
-                            [100, 370, 71, 71], [100, 460, 71, 71], [90, 550, 93, 101], [200, 560, 71, 71],
-                            [290, 560, 71, 71], [380, 560, 71, 71], [470, 560, 71, 71], [490, 180, 71, 71],
-                            [420, 240, 71, 71], [250, 410, 71, 71], [180, 480, 71, 71], [190, 180, 71, 71],
-                            [260, 240, 71, 71], [420, 410, 71, 71], [480, 480, 71, 71], [322, 310, 101, 101]]
         btn_list = [self.Btn0, self.Btn1, self.Btn2, self.Btn3, self.Btn4, self.Btn5, self.Btn6, self.Btn7, self.Btn8, self.Btn9, self.Btn10, self.Btn11, self.Btn12, self.Btn13, self.Btn14, self.Btn15, self.Btn16,
                     self.Btn17, self.Btn18, self.Btn19, self.Btn20, self.Btn21, self.Btn22, self.Btn23, self.Btn24, self.Btn25, self.Btn26, self.Btn27, self.Btn28]
         
@@ -69,85 +61,187 @@ class UI_Dialog_03(object):
         self.Player04_3.setGeometry(QtCore.QRect(780, 340, 141, 151))
         self.Player04_4.setGeometry(QtCore.QRect(810, 340, 141, 151))
         self.Player04_5.setGeometry(QtCore.QRect(850, 340, 141, 151))
+        
+        if self.remainedpiece[0] == 0:
+            self.Player01.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player01_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player01_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player01_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player01_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        if self.remainedpiece[0] == 1:
+            self.Player01.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player01_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player01_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player01_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        if self.remainedpiece[0] == 2:
+            self.Player01.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player01_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player01_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        if self.remainedpiece[0] == 3:
+            self.Player01.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player01_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        if self.remainedpiece[0] == 4:
+            self.Player01.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        
+        
+        if self.remainedpiece[1] == 0:
+            self.Player02.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player02_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player02_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player02_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player02_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        if self.remainedpiece[1] == 1:
+            self.Player02.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player02_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player02_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player02_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        if self.remainedpiece[1] == 2:
+            self.Player02.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player02_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player02_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        if self.remainedpiece[1] == 3:
+            self.Player02.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player02_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        if self.remainedpiece[1] == 4:
+            self.Player02.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        
+        if self.remainedpiece[2] == 0:
+            self.Player03.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player03_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player03_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player03_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player03_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        if self.remainedpiece[2] == 1:
+            self.Player03.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player03_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player03_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player03_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        if self.remainedpiece[2] == 2:
+            self.Player03.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player03_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player03_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        if self.remainedpiece[2] == 3:
+            self.Player03.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player03_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        if self.remainedpiece[2] == 4:
+            self.Player03.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        
+        if self.remainedpiece[3] == 0:
+            self.Player04.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player04_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player04_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player04_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player04_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        if self.remainedpiece[3] == 1:
+            self.Player04.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player04_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player04_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player04_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        if self.remainedpiece[3] == 2:
+            self.Player04.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player04_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player04_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        if self.remainedpiece[3] == 3:
+            self.Player04.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            self.Player04_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        if self.remainedpiece[3] == 4:
+            self.Player04.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        
+            
         if self.action == 2:
             for j in range(29):
-                if self.viewmapinfo[j][2] != -1:
-                    opacity_effect = QGraphicsOpacityEffect(btn_list[j])          
-                    opacity_effect.setOpacity(0)
-                    temp = btn_list[j]                              
-                    temp.setGraphicsEffect(opacity_effect) 
-                else:
-                    opacity_effect = QGraphicsOpacityEffect(btn_list[j])          
-                    opacity_effect.setOpacity(0)
-                    temp = btn_list[j]                              
-                    temp.setGraphicsEffect(opacity_effect) 
                 
-                for i in range(self.viewmapinfo[j][3]):
-                    if self.viewmapinfo[j][2] > -1:
-                        if self.viewmapinfo[j][2] == 0:
-                            if self.piece_index[0] == 0:
-                                self.Player01.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[0] = self.piece_index[0] - 1
-                            elif self.piece_index[0] == 1:
-                                self.Player01_2.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[0] = self.piece_index[0] - 1
-                            elif self.piece_index[0] == 2:
-                                self.Player01_3.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[0] = self.piece_index[0] - 1
-                            elif self.piece_index[0] == 3:
-                                self.Player01_4.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[0] = self.piece_index[0] - 1
-                            elif self.piece_index[0] == 4:
-                                self.Player01_5.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[0] = self.piece_index[0] - 1
-                        if self.viewmapinfo[j][2] == 1:
-                            if self.piece_index[1] == 0:
-                                self.Player02.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[1] = self.piece_index[1] - 1
-                            elif self.piece_index[1] == 1:
-                                self.Player02_2.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[1] = self.piece_index[1] - 1
-                            elif self.piece_index[1] == 2:
-                                self.Player02_3.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[1] = self.piece_index[1] - 1
-                            elif self.piece_index[1] == 3:
-                                self.Player02_4.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[1] = self.piece_index[1] - 1
-                            elif self.piece_index[1] == 4:
-                                self.Player02_5.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[1] = self.piece_index[1] - 1
-                        if self.viewmapinfo[j][2] == 2:
-                            if self.piece_index[2] == 0:
-                                self.Player03.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[2] = self.piece_index[2] - 1
-                            elif self.piece_index[2] == 1:
-                                self.Player03_2.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[2] = self.piece_index[2] - 1
-                            elif self.piece_index[2] == 2:
-                                self.Player03_3.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[2] = self.piece_index[2] - 1
-                            elif self.piece_index[2] == 3:
-                                self.Player03_4.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[2] = self.piece_index[2] - 1
-                            elif self.piece_index[2] == 4:
-                                self.Player03_5.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[2] = self.piece_index[2] - 1
-                        if self.viewmapinfo[j][2] == 3:
-                            if self.piece_index[3] == 0:
-                                self.Player04.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[3] = self.piece_index[3] - 1
-                            elif self.piece_index[3] == 1:
-                                self.Player04_2.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[3] = self.piece_index[3] - 1
-                            elif self.piece_index[3] == 2:
-                                self.Player04_3.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[3] = self.piece_index[3] - 1
-                            elif self.piece_index[3] == 3:
-                                self.Player04_4.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[3] = self.piece_index[3] - 1
-                            elif self.piece_index[3] == 4:
-                                self.Player04_5.setGeometry(QtCore.QRect(map_coordinates[j][0], map_coordinates[j][1], map_coordinates[j][2], map_coordinates[j][3]))
-                                self.piece_index[3] = self.piece_index[3] - 1    
+                if self.viewmapinfo[j][2] == -1:
+                    opacity_effect = QGraphicsOpacityEffect(btn_list[j])          
+                    opacity_effect.setOpacity(0)
+                    temp = btn_list[j]                              
+                    temp.setGraphicsEffect(opacity_effect)
+                elif self.viewmapinfo[j][2] == 0:
+                    opacity_effect = QGraphicsOpacityEffect(btn_list[j])          
+                    opacity_effect.setOpacity(1)
+                    temp = btn_list[j]                              
+                    temp.setGraphicsEffect(opacity_effect)
+                    if self.viewmapinfo[j][3] == 1:
+                        temp.setIcon(QtGui.QIcon("1.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    if self.viewmapinfo[j][3] == 2:
+                        temp.setIcon(QtGui.QIcon("1-2.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    if self.viewmapinfo[j][3] == 3:
+                        temp.setIcon(QtGui.QIcon("1-3.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    if self.viewmapinfo[j][3] == 4:
+                        temp.setIcon(QtGui.QIcon("1-4.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    if self.viewmapinfo[j][3] == 5:
+                        temp.setIcon(QtGui.QIcon("1-5.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    
+                elif self.viewmapinfo[j][2] == 1:
+                    opacity_effect = QGraphicsOpacityEffect(btn_list[j])          
+                    opacity_effect.setOpacity(1)
+                    temp = btn_list[j]                              
+                    temp.setGraphicsEffect(opacity_effect)
+                    if self.viewmapinfo[j][3] == 1:
+                        temp.setIcon(QtGui.QIcon("2.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    if self.viewmapinfo[j][3] == 2:
+                        temp.setIcon(QtGui.QIcon("2-2.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    if self.viewmapinfo[j][3] == 3:
+                        temp.setIcon(QtGui.QIcon("2-3.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    if self.viewmapinfo[j][3] == 4:
+                        temp.setIcon(QtGui.QIcon("2-4.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    if self.viewmapinfo[j][3] == 5:
+                        temp.setIcon(QtGui.QIcon("2-5.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    
+                
+                elif self.viewmapinfo[j][2] == 2:
+                    opacity_effect = QGraphicsOpacityEffect(btn_list[j])          
+                    opacity_effect.setOpacity(1)
+                    temp = btn_list[j]                              
+                    temp.setGraphicsEffect(opacity_effect)
+                    if self.viewmapinfo[j][3] == 1:
+                        temp.setIcon(QtGui.QIcon("3.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    if self.viewmapinfo[j][3] == 2:
+                        temp.setIcon(QtGui.QIcon("3-2.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    if self.viewmapinfo[j][3] == 3:
+                        temp.setIcon(QtGui.QIcon("3-3.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    if self.viewmapinfo[j][3] == 4:
+                        temp.setIcon(QtGui.QIcon("3-4.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    if self.viewmapinfo[j][3] == 5:
+                        temp.setIcon(QtGui.QIcon("3-5.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    
+                elif self.viewmapinfo[j][2] == 3:
+                    opacity_effect = QGraphicsOpacityEffect(btn_list[j])          
+                    opacity_effect.setOpacity(1)
+                    temp = btn_list[j]                              
+                    temp.setGraphicsEffect(opacity_effect)
+                    if self.viewmapinfo[j][3] == 1:
+                        temp.setIcon(QtGui.QIcon("4.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    if self.viewmapinfo[j][3] == 2:
+                        temp.setIcon(QtGui.QIcon("4-2.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    if self.viewmapinfo[j][3] == 3:
+                        temp.setIcon(QtGui.QIcon("4-3.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    if self.viewmapinfo[j][3] == 4:
+                        temp.setIcon(QtGui.QIcon("4-4.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    if self.viewmapinfo[j][3] == 5:
+                        temp.setIcon(QtGui.QIcon("4-5.PNG"))
+                        temp.setIconSize(QtCore.QSize(200,200))
+                    
+                    
             self.action = 0
               
                    
@@ -475,12 +569,11 @@ class UI_Dialog_03(object):
         ## 버튼 0 ~ 28까지 생성
         self.Btn1 = QtWidgets.QPushButton(Dialog)
         self.Btn1.setGeometry(QtCore.QRect(570, 460, 71, 81))
-        self.Btn1.setObjectName("Btn1")
+        self.Btn1.setObjectName("0.1")
         opacity_effect = QGraphicsOpacityEffect(self.Btn1)
-        opacity_effect.setOpacity(1)
+        opacity_effect.setOpacity(0.1)
         self.Btn1.setGraphicsEffect(opacity_effect)
         self.Btn1.clicked.connect(self.button_Click01)
-        self.Btn1.setText(_translate("Dialog", "1"))
 
         
         self.Btn2 = QtWidgets.QPushButton(Dialog)
@@ -725,8 +818,7 @@ class UI_Dialog_03(object):
         self.Gul.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/GUL.png\"/></p></body></html>"))
         self.Yut.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/YUT.png\"/></p></body></html>"))
         self.Mo.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/MO.png\"/></p></body></html>"))
-        self.Btn1.setIcon(QtGui.QIcon("1.PNG"))
-        self.Btn1.setIconSize(QtCore.QSize(200,200))
+        
         
         
 
