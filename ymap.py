@@ -27,7 +27,7 @@ class Map():
     
     """
     
-    def __init__(self):
+    def __init__(self, n_player, n_piece):
         """
         self.map_list[map_index][0~3]
         - '0'
@@ -52,9 +52,11 @@ class Map():
                           [False, 'down', -1, 0], [False, 'down', -1, 0], [False, 'down', -1, 0], [False, 'down', -1, 0],
                           [True, None, -1, 0]]
         
-        self.user_remained = [5, 5, 5, 5]
+        self.n_player = n_player
+        self.user_remained = [n_piece, n_piece, n_piece, n_piece]
         self.in_goal = [0, 0, 0, 0]
         self.winner = -1
+        self.n_piece = n_piece
     def select(self, n_roll, map_index, user_info):
         """
         - 'map_index'
@@ -68,7 +70,7 @@ class Map():
         """
         self.user_info = user_info
         self.n_roll = n_roll
-        if map_index == 0 and self.user_remained[user_info] < 0:
+        if map_index == 0 and self.user_remained[user_info] == 0:
             raise AssertionError("YOU DO NOT HAVE ANY REMAINED PIECE")
             
         if self.map_list[map_index][2] != user_info and map_index != 0:
@@ -180,7 +182,7 @@ class Map():
                     self.change_info(map_index, map_index + n_roll)
               
         
-        return self.map_list, self.user_remained, self.user_info, self.in_goal
+        return self.map_list, self.user_remained, self.user_info, self.in_goal, self.winner
         
     def change_info(self, departure, destination, generate = False):
         turn_change = True
@@ -236,11 +238,11 @@ class Map():
             self.map_list[departure][2] = -1
             self.map_list[departure][3] = 0
         
-        if self.in_goal[self.user_info] == 4:
+        if self.in_goal[self.user_info] == self.n_piece:
                 self.winner = self.user_info
         
-        if self.n_roll < 4 and turn_change:
-            self.user_info = (self.user_info + 1)%4
+        if self.n_roll < self.n_player and turn_change:
+            self.user_info = (self.user_info + 1)%self.n_player
             
 
 

@@ -5,8 +5,8 @@ import random
 
 class Contoller():
     
-    def __init__(self):
-        self.map = ymap.Map()
+    def __init__(self, n_player, n_piece):
+        self.map = ymap.Map(n_player, n_piece)
         self.n_roll = 0
         self.next_turn = 0
         
@@ -32,6 +32,6 @@ class Contoller():
     def map_clicked(self, map_index):
         if self.n_roll != 0 :
             print(self.n_roll, map_index, self.next_turn)
-            self.map_info, self.remained_piece, self.next_turn, self.in_goal  = self.map.select(self.n_roll, map_index, self.next_turn)
+            self.map_info, self.remained_piece, self.next_turn, self.in_goal, self.winner  = self.map.select(self.n_roll, map_index, self.next_turn)
             self.n_roll = 0  
-            return self.map_info, self.remained_piece, self.next_turn, self.in_goal
+            return self.map_info, self.remained_piece, self.next_turn, self.in_goal, self.winner

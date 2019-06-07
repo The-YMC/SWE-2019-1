@@ -21,131 +21,217 @@ class UI_Dialog_03(object):
     # 이 아래의 함수 3개와 temp_list는 만들다가 못 만든 것...T^T 지우셔도 됩니다
     
     # UI 설정
-    def __init__(self):
-        self.controller = Controller.Contoller()
+    def __init__(self, n_player, n_piece):
+        self.controller = Controller.Contoller(n_player, n_piece)
         self.current_turn = 0
         self.next_turn = 0
-        self.remainedpiece = [5,5,5,5]
+        self.remainedpiece = [n_piece, n_piece, n_piece, n_piece]
+        self.n_piece = n_piece
         self.action = 0
     def map_clicked(self, map_index):
         if self.action == 1:
             self.current_turn = self.next_turn
-            self.viewmapinfo, self.remainedpiece, self.next_turn, self.in_goal =self.controller.map_clicked(map_index)
+            self.viewmapinfo, self.remainedpiece, self.next_turn, self.in_goal, self.winner =self.controller.map_clicked(map_index)
             print(self.viewmapinfo, self.remainedpiece)
             self.action = 2
             self.update_ui()
-            string = str(self.next_turn + 1) + "의 턴 입니다. 윷을 던져주세요."
-            self.turn.setText(string)
+            if self.winner > -1:
+                string = str(self.current_turn + 1) + "가 승리헀습니다."
+                self.turn.setText(string)
+                self.action = 3
+            else:
+                string = str(self.next_turn + 1) + "의 턴 입니다. 윷을 던져주세요."
+                self.turn.setText(string)
             
     def update_ui(self):
         btn_list = [self.Btn0, self.Btn1, self.Btn2, self.Btn3, self.Btn4, self.Btn5, self.Btn6, self.Btn7, self.Btn8, self.Btn9, self.Btn10, self.Btn11, self.Btn12, self.Btn13, self.Btn14, self.Btn15, self.Btn16,
                     self.Btn17, self.Btn18, self.Btn19, self.Btn20, self.Btn21, self.Btn22, self.Btn23, self.Btn24, self.Btn25, self.Btn26, self.Btn27, self.Btn28]
         
-        self.Player01.setGeometry(QtCore.QRect(690, 40, 141, 151))
-        self.Player01_2.setGeometry(QtCore.QRect(750, 40, 141, 151))
-        self.Player01_3.setGeometry(QtCore.QRect(780, 40, 141, 151))
-        self.Player01_4.setGeometry(QtCore.QRect(810, 40, 141, 151))
-        self.Player01_5.setGeometry(QtCore.QRect(850, 40, 141, 151))
-        self.Player02.setGeometry(QtCore.QRect(690, 140, 141, 151))
-        self.Player02_2.setGeometry(QtCore.QRect(750, 140, 141, 151))
-        self.Player02_3.setGeometry(QtCore.QRect(780, 140, 141, 151))
-        self.Player02_4.setGeometry(QtCore.QRect(810, 140, 141, 151))
-        self.Player02_5.setGeometry(QtCore.QRect(850, 140, 141, 151))
-        self.Player03.setGeometry(QtCore.QRect(690, 240, 141, 151))
-        self.Player03_2.setGeometry(QtCore.QRect(750, 240, 141, 151))
-        self.Player03_3.setGeometry(QtCore.QRect(780, 240, 141, 151))
-        self.Player03_4.setGeometry(QtCore.QRect(810, 240, 141, 151))
-        self.Player03_5.setGeometry(QtCore.QRect(850, 240, 141, 151))
-        self.Player04.setGeometry(QtCore.QRect(690, 340, 141, 151))
-        self.Player04_2.setGeometry(QtCore.QRect(750, 340, 141, 151))
-        self.Player04_3.setGeometry(QtCore.QRect(780, 340, 141, 151))
-        self.Player04_4.setGeometry(QtCore.QRect(810, 340, 141, 151))
-        self.Player04_5.setGeometry(QtCore.QRect(850, 340, 141, 151))
+        if self.remainedpiece[0] != 0:    
+            self.Player01.setGeometry(QtCore.QRect(690, 40, 141, 151))
+        if self.remainedpiece[1] != 0:
+            self.Player02.setGeometry(QtCore.QRect(690, 140, 141, 151))
+        if self.remainedpiece[2] != 0:
+            self.Player03.setGeometry(QtCore.QRect(690, 240, 141, 151))
+        if self.remainedpiece[3] != 0:
+            self.Player04.setGeometry(QtCore.QRect(690, 340, 141, 151))
+        
+        if self.n_piece > 1:
+            if self.remainedpiece[0] != 0:
+                self.Player01_2.setGeometry(QtCore.QRect(750, 40, 141, 151))
+            if self.remainedpiece[1] != 0:
+                self.Player02_2.setGeometry(QtCore.QRect(750, 140, 141, 151))
+            if self.remainedpiece[2] != 0:
+                self.Player03_2.setGeometry(QtCore.QRect(750, 240, 141, 151))
+            if self.remainedpiece[3] != 0:
+                self.Player04_2.setGeometry(QtCore.QRect(750, 340, 141, 151))
+       
+        if self.n_piece > 2:
+            if self.remainedpiece[0] != 0:
+                self.Player01_3.setGeometry(QtCore.QRect(780, 40, 141, 151))
+            if self.remainedpiece[1] != 0:
+                self.Player02_3.setGeometry(QtCore.QRect(780, 140, 141, 151))
+            if self.remainedpiece[2] != 0:
+                self.Player03_3.setGeometry(QtCore.QRect(780, 240, 141, 151))
+            if self.remainedpiece[3] != 0:
+                self.Player04_3.setGeometry(QtCore.QRect(780, 340, 141, 151))
+        
+        if self.n_piece > 3:
+            if self.remainedpiece[0] != 0:
+                self.Player01_4.setGeometry(QtCore.QRect(810, 40, 141, 151))
+            if self.remainedpiece[1] != 0:
+                self.Player02_4.setGeometry(QtCore.QRect(810, 140, 141, 151))
+            if self.remainedpiece[2] != 0:
+                self.Player03_4.setGeometry(QtCore.QRect(810, 240, 141, 151))
+            if self.remainedpiece[3] != 0:
+                self.Player04_4.setGeometry(QtCore.QRect(810, 340, 141, 151))
+        
+        if self.n_piece > 4:
+            if self.remainedpiece[0] != 0:
+                self.Player01_5.setGeometry(QtCore.QRect(850, 40, 141, 151))
+            if self.remainedpiece[0] != 0:
+                self.Player02_5.setGeometry(QtCore.QRect(850, 140, 141, 151))
+            if self.remainedpiece[0] != 0:
+                self.Player03_5.setGeometry(QtCore.QRect(850, 240, 141, 151))
+            if self.remainedpiece[0] != 0:
+                self.Player04_5.setGeometry(QtCore.QRect(850, 340, 141, 151))
+        
+    
         
         if self.remainedpiece[0] == 0:
             self.Player01.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player01_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player01_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player01_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player01_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 1:
+                self.Player01_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 2:
+                self.Player01_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 3:
+                self.Player01_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 4:
+                self.Player01_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
         if self.remainedpiece[0] == 1:
-            self.Player01.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player01_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player01_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player01_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 1:
+                self.Player01_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 2:
+                self.Player01_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 3:
+                self.Player01_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 4:
+                self.Player01_5.setGeometry(QtCore.QRect(0, 0, 0, 0)) 
         if self.remainedpiece[0] == 2:
-            self.Player01.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player01_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player01_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 2:
+                self.Player01_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 3:
+                self.Player01_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 4:
+                self.Player01_5.setGeometry(QtCore.QRect(0, 0, 0, 0))    
+            
         if self.remainedpiece[0] == 3:
-            self.Player01.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player01_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 3:
+                self.Player01_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 4:
+                self.Player01_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
         if self.remainedpiece[0] == 4:
-            self.Player01.setGeometry(QtCore.QRect(0, 0, 0, 0))
-        
-        
+            if self.n_piece > 4:
+                self.Player01_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
+                
         if self.remainedpiece[1] == 0:
             self.Player02.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player02_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player02_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player02_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player02_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 1:
+                self.Player02_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 2:
+                self.Player02_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 3:
+                self.Player02_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 4:
+                self.Player02_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
         if self.remainedpiece[1] == 1:
-            self.Player02.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player02_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player02_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player02_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 1:
+                self.Player02_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 2:
+                self.Player02_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 3:
+                self.Player02_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 4:
+                self.Player02_5.setGeometry(QtCore.QRect(0, 0, 0, 0)) 
         if self.remainedpiece[1] == 2:
-            self.Player02.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player02_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player02_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 2:
+                self.Player02_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 3:
+                self.Player02_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 4:
+                self.Player02_5.setGeometry(QtCore.QRect(0, 0, 0, 0))    
+            
         if self.remainedpiece[1] == 3:
-            self.Player02.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player02_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 3:
+                self.Player02_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 4:
+                self.Player02_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
         if self.remainedpiece[1] == 4:
-            self.Player02.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 4:
+                self.Player02_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
         
         if self.remainedpiece[2] == 0:
             self.Player03.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player03_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player03_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player03_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player03_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 2:
+                self.Player03_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 2:
+                self.Player03_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 3:
+                self.Player03_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 4:
+                self.Player03_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
         if self.remainedpiece[2] == 1:
-            self.Player03.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player03_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player03_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player03_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 1:
+                self.Player03_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 2:
+                self.Player03_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 3:
+                self.Player03_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 4:
+                self.Player03_5.setGeometry(QtCore.QRect(0, 0, 0, 0)) 
         if self.remainedpiece[2] == 2:
-            self.Player03.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player03_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player03_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
-        if self.remainedpiece[2] == 3:
-            self.Player03.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player03_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
-        if self.remainedpiece[2] == 4:
-            self.Player03.setGeometry(QtCore.QRect(0, 0, 0, 0))
-        
+            if self.n_piece > 2:
+                self.Player03_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 3:
+                self.Player03_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 4:
+                self.Player03_5.setGeometry(QtCore.QRect(0, 0, 0, 0))    
+            
         if self.remainedpiece[3] == 0:
             self.Player04.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player04_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player04_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player04_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player04_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 2:
+                self.Player04_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 2:
+                self.Player04_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 3:
+                self.Player04_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 4:
+                self.Player04_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
         if self.remainedpiece[3] == 1:
-            self.Player04.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player04_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player04_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player04_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 1:
+                self.Player04_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 2:
+                self.Player04_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 3:
+                self.Player04_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 4:
+                self.Player04_5.setGeometry(QtCore.QRect(0, 0, 0, 0)) 
         if self.remainedpiece[3] == 2:
-            self.Player04.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player04_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player04_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
-        if self.remainedpiece[3] == 3:
-            self.Player04.setGeometry(QtCore.QRect(0, 0, 0, 0))
-            self.Player04_2.setGeometry(QtCore.QRect(0, 0, 0, 0))
-        if self.remainedpiece[3] == 4:
-            self.Player04.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 2:
+                self.Player04_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 3:
+                self.Player04_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 4:
+                self.Player04_5.setGeometry(QtCore.QRect(0, 0, 0, 0)) 
+        if self.remainedpiece[2] == 3:
+            if self.n_piece > 3:
+                self.Player03_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
+            if self.n_piece > 4:
+                self.Player03_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        if self.remainedpiece[2] == 4:
+            if self.n_piece > 4:
+                self.Player03_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
+        
         
             
         if self.action == 2:
@@ -894,7 +980,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QDialog()
-    ui = UI_Dialog_03()
+    ui = UI_Dialog_03(3, 3)
     ui.setupUi(Dialog)
     Dialog.show()
     sys.exit(app.exec_())
