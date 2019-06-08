@@ -11,17 +11,17 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QGraphicsOpacityEffect
+from PyQt5.QtCore import QCoreApplication
 import Controller
 import sys
-import myres_rc
+
 
 class UI_Dialog_03(object):
 
-
     # 이 아래의 함수 3개와 temp_list는 만들다가 못 만든 것...T^T 지우셔도 됩니다
-    
+
     # UI 설정
-    def __init__(self, n_player, n_piece, name1 ,name2, name3, name4):
+    def __init__(self, n_player, n_piece, name1, name2, name3, name4):
         self.player_name = [name1, name2, name3, name4]
         self.controller = Controller.Contoller(n_player, n_piece)
         self.current_turn = 0
@@ -29,10 +29,12 @@ class UI_Dialog_03(object):
         self.remainedpiece = [n_piece, n_piece, n_piece, n_piece]
         self.n_piece = n_piece
         self.action = 0
-    def map_clicked(self, map_index, generate = False):
+
+    def map_clicked(self, map_index, generate=False):
         if self.action == 1:
             self.current_turn = self.next_turn
-            self.viewmapinfo, self.remainedpiece, self.next_turn, self.in_goal, self.winner =self.controller.map_clicked(map_index, generate)
+            self.viewmapinfo, self.remainedpiece, self.next_turn, self.in_goal, self.winner = self.controller.map_clicked(
+                map_index, generate)
             print(self.viewmapinfo, self.remainedpiece)
             self.action = 2
             self.update_ui()
@@ -43,12 +45,14 @@ class UI_Dialog_03(object):
             else:
                 string = self.player_name[self.next_turn] + "의 턴 입니다. 윷을 던져주세요."
                 self.turn.setText(string)
-            
+
     def update_ui(self):
-        btn_list = [self.Btn0, self.Btn1, self.Btn2, self.Btn3, self.Btn4, self.Btn5, self.Btn6, self.Btn7, self.Btn8, self.Btn9, self.Btn10, self.Btn11, self.Btn12, self.Btn13, self.Btn14, self.Btn15, self.Btn16,
-                    self.Btn17, self.Btn18, self.Btn19, self.Btn20, self.Btn21, self.Btn22, self.Btn23, self.Btn24, self.Btn25, self.Btn26, self.Btn27, self.Btn28]
-        
-        if self.remainedpiece[0] != 0:    
+        btn_list = [self.Btn0, self.Btn1, self.Btn2, self.Btn3, self.Btn4, self.Btn5, self.Btn6, self.Btn7, self.Btn8,
+                    self.Btn9, self.Btn10, self.Btn11, self.Btn12, self.Btn13, self.Btn14, self.Btn15, self.Btn16,
+                    self.Btn17, self.Btn18, self.Btn19, self.Btn20, self.Btn21, self.Btn22, self.Btn23, self.Btn24,
+                    self.Btn25, self.Btn26, self.Btn27, self.Btn28]
+
+        if self.remainedpiece[0] != 0:
             self.Player01.setGeometry(QtCore.QRect(690, 40, 141, 151))
         if self.remainedpiece[1] != 0:
             self.Player02.setGeometry(QtCore.QRect(690, 140, 141, 151))
@@ -56,7 +60,7 @@ class UI_Dialog_03(object):
             self.Player03.setGeometry(QtCore.QRect(690, 240, 141, 151))
         if self.remainedpiece[3] != 0:
             self.Player04.setGeometry(QtCore.QRect(690, 340, 141, 151))
-        
+
         if self.n_piece > 1:
             if self.remainedpiece[0] != 0:
                 self.Player01_2.setGeometry(QtCore.QRect(750, 40, 141, 151))
@@ -66,7 +70,7 @@ class UI_Dialog_03(object):
                 self.Player03_2.setGeometry(QtCore.QRect(750, 240, 141, 151))
             if self.remainedpiece[3] != 0:
                 self.Player04_2.setGeometry(QtCore.QRect(750, 340, 141, 151))
-       
+
         if self.n_piece > 2:
             if self.remainedpiece[0] != 0:
                 self.Player01_3.setGeometry(QtCore.QRect(780, 40, 141, 151))
@@ -76,7 +80,7 @@ class UI_Dialog_03(object):
                 self.Player03_3.setGeometry(QtCore.QRect(780, 240, 141, 151))
             if self.remainedpiece[3] != 0:
                 self.Player04_3.setGeometry(QtCore.QRect(780, 340, 141, 151))
-        
+
         if self.n_piece > 3:
             if self.remainedpiece[0] != 0:
                 self.Player01_4.setGeometry(QtCore.QRect(810, 40, 141, 151))
@@ -86,7 +90,7 @@ class UI_Dialog_03(object):
                 self.Player03_4.setGeometry(QtCore.QRect(810, 240, 141, 151))
             if self.remainedpiece[3] != 0:
                 self.Player04_4.setGeometry(QtCore.QRect(810, 340, 141, 151))
-        
+
         if self.n_piece > 4:
             if self.remainedpiece[0] != 0:
                 self.Player01_5.setGeometry(QtCore.QRect(850, 40, 141, 151))
@@ -96,9 +100,7 @@ class UI_Dialog_03(object):
                 self.Player03_5.setGeometry(QtCore.QRect(850, 240, 141, 151))
             if self.remainedpiece[0] != 0:
                 self.Player04_5.setGeometry(QtCore.QRect(850, 340, 141, 151))
-        
-    
-        
+
         if self.remainedpiece[0] == 0:
             self.Player01.setGeometry(QtCore.QRect(0, 0, 0, 0))
             if self.n_piece > 1:
@@ -117,15 +119,15 @@ class UI_Dialog_03(object):
             if self.n_piece > 3:
                 self.Player01_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
             if self.n_piece > 4:
-                self.Player01_5.setGeometry(QtCore.QRect(0, 0, 0, 0)) 
+                self.Player01_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
         if self.remainedpiece[0] == 2:
             if self.n_piece > 2:
                 self.Player01_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
             if self.n_piece > 3:
                 self.Player01_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
             if self.n_piece > 4:
-                self.Player01_5.setGeometry(QtCore.QRect(0, 0, 0, 0))    
-            
+                self.Player01_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
+
         if self.remainedpiece[0] == 3:
             if self.n_piece > 3:
                 self.Player01_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
@@ -134,7 +136,7 @@ class UI_Dialog_03(object):
         if self.remainedpiece[0] == 4:
             if self.n_piece > 4:
                 self.Player01_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
-                
+
         if self.remainedpiece[1] == 0:
             self.Player02.setGeometry(QtCore.QRect(0, 0, 0, 0))
             if self.n_piece > 1:
@@ -153,15 +155,15 @@ class UI_Dialog_03(object):
             if self.n_piece > 3:
                 self.Player02_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
             if self.n_piece > 4:
-                self.Player02_5.setGeometry(QtCore.QRect(0, 0, 0, 0)) 
+                self.Player02_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
         if self.remainedpiece[1] == 2:
             if self.n_piece > 2:
                 self.Player02_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
             if self.n_piece > 3:
                 self.Player02_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
             if self.n_piece > 4:
-                self.Player02_5.setGeometry(QtCore.QRect(0, 0, 0, 0))    
-            
+                self.Player02_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
+
         if self.remainedpiece[1] == 3:
             if self.n_piece > 3:
                 self.Player02_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
@@ -170,7 +172,7 @@ class UI_Dialog_03(object):
         if self.remainedpiece[1] == 4:
             if self.n_piece > 4:
                 self.Player02_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
-        
+
         if self.remainedpiece[2] == 0:
             self.Player03.setGeometry(QtCore.QRect(0, 0, 0, 0))
             if self.n_piece > 2:
@@ -189,15 +191,15 @@ class UI_Dialog_03(object):
             if self.n_piece > 3:
                 self.Player03_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
             if self.n_piece > 4:
-                self.Player03_5.setGeometry(QtCore.QRect(0, 0, 0, 0)) 
+                self.Player03_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
         if self.remainedpiece[2] == 2:
             if self.n_piece > 2:
                 self.Player03_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
             if self.n_piece > 3:
                 self.Player03_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
             if self.n_piece > 4:
-                self.Player03_5.setGeometry(QtCore.QRect(0, 0, 0, 0))    
-            
+                self.Player03_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
+
         if self.remainedpiece[3] == 0:
             self.Player04.setGeometry(QtCore.QRect(0, 0, 0, 0))
             if self.n_piece > 2:
@@ -216,14 +218,14 @@ class UI_Dialog_03(object):
             if self.n_piece > 3:
                 self.Player04_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
             if self.n_piece > 4:
-                self.Player04_5.setGeometry(QtCore.QRect(0, 0, 0, 0)) 
+                self.Player04_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
         if self.remainedpiece[3] == 2:
             if self.n_piece > 2:
                 self.Player04_3.setGeometry(QtCore.QRect(0, 0, 0, 0))
             if self.n_piece > 3:
                 self.Player04_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
             if self.n_piece > 4:
-                self.Player04_5.setGeometry(QtCore.QRect(0, 0, 0, 0)) 
+                self.Player04_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
         if self.remainedpiece[2] == 3:
             if self.n_piece > 3:
                 self.Player03_4.setGeometry(QtCore.QRect(0, 0, 0, 0))
@@ -232,242 +234,414 @@ class UI_Dialog_03(object):
         if self.remainedpiece[2] == 4:
             if self.n_piece > 4:
                 self.Player03_5.setGeometry(QtCore.QRect(0, 0, 0, 0))
-        
-        
-            
+
         if self.action == 2:
             for j in range(29):
-                
+
                 if self.viewmapinfo[j][2] == -1:
-                    opacity_effect = QGraphicsOpacityEffect(btn_list[j])          
+                    opacity_effect = QGraphicsOpacityEffect(btn_list[j])
                     opacity_effect.setOpacity(0)
-                    temp = btn_list[j]                              
+                    temp = btn_list[j]
                     temp.setGraphicsEffect(opacity_effect)
                 elif self.viewmapinfo[j][2] == 0:
-                    opacity_effect = QGraphicsOpacityEffect(btn_list[j])          
+                    opacity_effect = QGraphicsOpacityEffect(btn_list[j])
                     opacity_effect.setOpacity(1)
-                    temp = btn_list[j]                              
+                    temp = btn_list[j]
                     temp.setGraphicsEffect(opacity_effect)
                     if self.viewmapinfo[j][3] == 1:
                         temp.setIcon(QtGui.QIcon("1.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
+                        temp.setIconSize(QtCore.QSize(300, 200))
                     if self.viewmapinfo[j][3] == 2:
                         temp.setIcon(QtGui.QIcon("1-2.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
+                        temp.setIconSize(QtCore.QSize(300, 200))
                     if self.viewmapinfo[j][3] == 3:
                         temp.setIcon(QtGui.QIcon("1-3.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
+                        temp.setIconSize(QtCore.QSize(200, 200))
                     if self.viewmapinfo[j][3] == 4:
                         temp.setIcon(QtGui.QIcon("1-4.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
+                        temp.setIconSize(QtCore.QSize(200, 200))
                     if self.viewmapinfo[j][3] == 5:
                         temp.setIcon(QtGui.QIcon("1-5.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
-                    
+                        temp.setIconSize(QtCore.QSize(200, 200))
+
                 elif self.viewmapinfo[j][2] == 1:
-                    opacity_effect = QGraphicsOpacityEffect(btn_list[j])          
+                    opacity_effect = QGraphicsOpacityEffect(btn_list[j])
                     opacity_effect.setOpacity(1)
-                    temp = btn_list[j]                              
+                    temp = btn_list[j]
                     temp.setGraphicsEffect(opacity_effect)
                     if self.viewmapinfo[j][3] == 1:
                         temp.setIcon(QtGui.QIcon("2.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
+                        temp.setIconSize(QtCore.QSize(200, 200))
                     if self.viewmapinfo[j][3] == 2:
                         temp.setIcon(QtGui.QIcon("2-2.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
+                        temp.setIconSize(QtCore.QSize(200, 200))
                     if self.viewmapinfo[j][3] == 3:
                         temp.setIcon(QtGui.QIcon("2-3.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
+                        temp.setIconSize(QtCore.QSize(200, 200))
                     if self.viewmapinfo[j][3] == 4:
                         temp.setIcon(QtGui.QIcon("2-4.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
+                        temp.setIconSize(QtCore.QSize(200, 200))
                     if self.viewmapinfo[j][3] == 5:
                         temp.setIcon(QtGui.QIcon("2-5.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
-                    
-                
+                        temp.setIconSize(QtCore.QSize(200, 200))
+
+
                 elif self.viewmapinfo[j][2] == 2:
-                    opacity_effect = QGraphicsOpacityEffect(btn_list[j])          
+                    opacity_effect = QGraphicsOpacityEffect(btn_list[j])
                     opacity_effect.setOpacity(1)
-                    temp = btn_list[j]                              
+                    temp = btn_list[j]
                     temp.setGraphicsEffect(opacity_effect)
                     if self.viewmapinfo[j][3] == 1:
                         temp.setIcon(QtGui.QIcon("3.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
+                        temp.setIconSize(QtCore.QSize(200, 200))
                     if self.viewmapinfo[j][3] == 2:
                         temp.setIcon(QtGui.QIcon("3-2.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
+                        temp.setIconSize(QtCore.QSize(200, 200))
                     if self.viewmapinfo[j][3] == 3:
                         temp.setIcon(QtGui.QIcon("3-3.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
+                        temp.setIconSize(QtCore.QSize(200, 200))
                     if self.viewmapinfo[j][3] == 4:
                         temp.setIcon(QtGui.QIcon("3-4.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
+                        temp.setIconSize(QtCore.QSize(200, 200))
                     if self.viewmapinfo[j][3] == 5:
                         temp.setIcon(QtGui.QIcon("3-5.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
-                    
+                        temp.setIconSize(QtCore.QSize(200, 200))
+
                 elif self.viewmapinfo[j][2] == 3:
-                    opacity_effect = QGraphicsOpacityEffect(btn_list[j])          
+                    opacity_effect = QGraphicsOpacityEffect(btn_list[j])
                     opacity_effect.setOpacity(1)
-                    temp = btn_list[j]                              
+                    temp = btn_list[j]
                     temp.setGraphicsEffect(opacity_effect)
                     if self.viewmapinfo[j][3] == 1:
                         temp.setIcon(QtGui.QIcon("4.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
+                        temp.setIconSize(QtCore.QSize(200, 200))
                     if self.viewmapinfo[j][3] == 2:
                         temp.setIcon(QtGui.QIcon("4-2.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
+                        temp.setIconSize(QtCore.QSize(200, 200))
                     if self.viewmapinfo[j][3] == 3:
                         temp.setIcon(QtGui.QIcon("4-3.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
+                        temp.setIconSize(QtCore.QSize(200, 200))
                     if self.viewmapinfo[j][3] == 4:
                         temp.setIcon(QtGui.QIcon("4-4.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
+                        temp.setIconSize(QtCore.QSize(200, 200))
                     if self.viewmapinfo[j][3] == 5:
                         temp.setIcon(QtGui.QIcon("4-5.png"))
-                        temp.setIconSize(QtCore.QSize(200,200))
-                    
-                    
+                        temp.setIconSize(QtCore.QSize(200, 200))
+
             self.action = 0
-              
-                   
+
     def roll(self):
         if self.action == 0:
             self.controller.roll()
             self.action = 1
             if self.controller.n_roll == 1:
-                string =  "도가 나왔습니다. 움직일 말을 골라주세요."
+                string = "도가 나왔습니다. 움직일 말을 골라주세요."
+                opacity_effect = QGraphicsOpacityEffect(self.BackDo)
+                opacity_effect.setOpacity(0)
+                self.BackDo.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Do)
+                opacity_effect.setOpacity(1)
+                self.Do.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Ge)
+                opacity_effect.setOpacity(0)
+                self.Ge.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Gul)
+                opacity_effect.setOpacity(0)
+                self.Gul.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Yut)
+                opacity_effect.setOpacity(0)
+                self.Yut.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Mo)
+                opacity_effect.setOpacity(0)
+                self.Mo.setGraphicsEffect(opacity_effect)
+
             elif self.controller.n_roll == 2:
-                string =  "개가 나왔습니다. 움직일 말을 골라주세요."
+                string = "개가 나왔습니다. 움직일 말을 골라주세요."
+                opacity_effect = QGraphicsOpacityEffect(self.BackDo)
+                opacity_effect.setOpacity(0)
+                self.BackDo.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Do)
+                opacity_effect.setOpacity(0)
+                self.Do.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Ge)
+                opacity_effect.setOpacity(1)
+                self.Ge.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Gul)
+                opacity_effect.setOpacity(0)
+                self.Gul.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Yut)
+                opacity_effect.setOpacity(0)
+                self.Yut.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Mo)
+                opacity_effect.setOpacity(0)
+                self.Mo.setGraphicsEffect(opacity_effect)
+
             elif self.controller.n_roll == 3:
-                string =  "걸이 나왔습니다. 움직일 말을 골라주세요."
+                string = "걸이 나왔습니다. 움직일 말을 골라주세요."
+                opacity_effect = QGraphicsOpacityEffect(self.BackDo)
+                opacity_effect.setOpacity(0)
+                self.BackDo.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Do)
+                opacity_effect.setOpacity(0)
+                self.Do.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Ge)
+                opacity_effect.setOpacity(0)
+                self.Ge.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Gul)
+                opacity_effect.setOpacity(1)
+                self.Gul.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Yut)
+                opacity_effect.setOpacity(0)
+                self.Yut.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Mo)
+                opacity_effect.setOpacity(0)
+                self.Mo.setGraphicsEffect(opacity_effect)
+
             elif self.controller.n_roll == 4:
-                string =  "윷이 나왔습니다. 움직일 말을 골라주세요."
+                string = "윷이 나왔습니다. 움직일 말을 골라주세요."
+                opacity_effect = QGraphicsOpacityEffect(self.BackDo)
+                opacity_effect.setOpacity(0)
+                self.BackDo.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Do)
+                opacity_effect.setOpacity(0)
+                self.Do.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Ge)
+                opacity_effect.setOpacity(0)
+                self.Ge.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Gul)
+                opacity_effect.setOpacity(0)
+                self.Gul.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Yut)
+                opacity_effect.setOpacity(1)
+                self.Yut.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Mo)
+                opacity_effect.setOpacity(0)
+                self.Mo.setGraphicsEffect(opacity_effect)
             elif self.controller.n_roll == 5:
-                string =  "모가 나왔습니다. 움직일 말을 골라주세요."
+                string = "모가 나왔습니다. 움직일 말을 골라주세요."
+                opacity_effect = QGraphicsOpacityEffect(self.BackDo)
+                opacity_effect.setOpacity(0)
+                self.BackDo.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Do)
+                opacity_effect.setOpacity(0)
+                self.Do.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Ge)
+                opacity_effect.setOpacity(0)
+                self.Ge.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Gul)
+                opacity_effect.setOpacity(0)
+                self.Gul.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Yut)
+                opacity_effect.setOpacity(0)
+                self.Yut.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Mo)
+                opacity_effect.setOpacity(1)
+                self.Mo.setGraphicsEffect(opacity_effect)
             else:
                 string = "빽도가 나왔습니다. 움직일 말을 골라주세요."
+                opacity_effect = QGraphicsOpacityEffect(self.BackDo)
+                opacity_effect.setOpacity(1)
+                self.BackDo.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Do)
+                opacity_effect.setOpacity(0)
+                self.Do.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Ge)
+                opacity_effect.setOpacity(0)
+                self.Ge.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Gul)
+                opacity_effect.setOpacity(0)
+                self.Gul.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Yut)
+                opacity_effect.setOpacity(0)
+                self.Yut.setGraphicsEffect(opacity_effect)
+
+                opacity_effect = QGraphicsOpacityEffect(self.Mo)
+                opacity_effect.setOpacity(0)
+                self.Mo.setGraphicsEffect(opacity_effect)
             self.turn.setText(string)
+
     def backdo(self):
         if self.action == 0:
             self.controller.conditional_roll(-1)
             self.action = 1
+
     def do(self):
         if self.action == 0:
             self.controller.conditional_roll(1)
             self.action = 1
-    
+
     def gae(self):
         if self.action == 0:
             self.controller.conditional_roll(2)
             self.action = 1
-    
+
     def geol(self):
         if self.action == 0:
             self.controller.conditional_roll(3)
             self.action = 1
-    
+
     def yut(self):
         if self.action == 0:
             self.controller.conditional_roll(4)
             self.action = 1
-    
+
     def mo(self):
         if self.action == 0:
             self.controller.conditional_roll(5)
             self.action = 1
-    
+
+
+
+
     def button_Click(self):
         self.map_clicked(0, True)
+
     def button_Click00(self):
         self.map_clicked(0)
+
     def button_Click01(self):
         self.map_clicked(1)
+
     def button_Click02(self):
         self.map_clicked(2)
+
     def button_Click03(self):
         self.map_clicked(3)
+
     def button_Click04(self):
         self.map_clicked(4)
+
     def button_Click05(self):
         self.map_clicked(5)
+
     def button_Click06(self):
         self.map_clicked(6)
+
     def button_Click07(self):
         self.map_clicked(7)
+
     def button_Click08(self):
         self.map_clicked(8)
+
     def button_Click09(self):
         self.map_clicked(9)
+
     def button_Click10(self):
         self.map_clicked(10)
+
     def button_Click11(self):
         self.map_clicked(11)
+
     def button_Click12(self):
         self.map_clicked(12)
+
     def button_Click13(self):
         self.map_clicked(13)
+
     def button_Click14(self):
         self.map_clicked(14)
+
     def button_Click15(self):
         self.map_clicked(15)
+
     def button_Click16(self):
         self.map_clicked(16)
+
     def button_Click17(self):
         self.map_clicked(17)
+
     def button_Click18(self):
         self.map_clicked(18)
+
     def button_Click19(self):
         self.map_clicked(19)
+
     def button_Click20(self):
         self.map_clicked(20)
+
     def button_Click21(self):
         self.map_clicked(21)
+
     def button_Click22(self):
         self.map_clicked(22)
+
     def button_Click23(self):
         self.map_clicked(23)
+
     def button_Click24(self):
         self.map_clicked(24)
+
     def button_Click25(self):
         self.map_clicked(25)
+
     def button_Click26(self):
         self.map_clicked(26)
+
     def button_Click27(self):
         self.map_clicked(27)
+
     def button_Click28(self):
         self.map_clicked(28)
-        
+
     def setupUi(self, Dialog):
         self.Dialog = Dialog
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setObjectName("Dialog")                              # Dialog의 이름 , 변경시 해당 이름으로 접근 , Dialog는 우리가 보는 윈도우 창이라고 생각하면 됨
-        Dialog.resize(1020, 800)                                    # 화면 크기 1020*800
+        Dialog.setObjectName("Dialog")  # Dialog의 이름 , 변경시 해당 이름으로 접근 , Dialog는 우리가 보는 윈도우 창이라고 생각하면 됨
+        Dialog.resize(1020, 800)  # 화면 크기 1020*800
 
         # 그래픽 뷰 - 배경 화면 흰색으로 하기 위하여 (실은 배경화면 흰색으로 하는 코드를 몰라서 그래픽 뷰-디폴트 흰색-으로 배경을 덮음)
-        self.graphicsView = QtWidgets.QGraphicsView(Dialog)             # Qt위젯 중 그래픽뷰 사용을 선언
-        self.graphicsView.setGeometry(QtCore.QRect(0, 0, 1021, 801))    # 그래픽 뷰 위치 및 크기 설정 (시작점의 x좌표, 시작점의 y좌표, 가로 크기, 세로 크기)
-        self.graphicsView.setObjectName("graphicsView")                 # 해당 뷰의 이름
+        self.graphicsView = QtWidgets.QGraphicsView(Dialog)  # Qt위젯 중 그래픽뷰 사용을 선언
+        self.graphicsView.setGeometry(
+            QtCore.QRect(0, 0, 1021, 801))  # 그래픽 뷰 위치 및 크기 설정 (시작점의 x좌표, 시작점의 y좌표, 가로 크기, 세로 크기)
+        self.graphicsView.setObjectName("graphicsView")  # 해당 뷰의 이름
 
         # 말 추가 기능 버튼 - 누르면 말이 추가되도록
-        self.AddPiece = QtWidgets.QPushButton(Dialog)                   # AddPiece라는 버튼을 Dialog에 띄움
-        self.AddPiece.setGeometry(QtCore.QRect(720, 590, 121, 71))      # Dialog의 크기 (시작점의 x좌표, 시작점의 y좌표, 가로 크기, 세로 크기)
-        font = QtGui.QFont()                                            # 폰트 설정
+        self.AddPiece = QtWidgets.QPushButton(Dialog)  # AddPiece라는 버튼을 Dialog에 띄움
+        self.AddPiece.setGeometry(QtCore.QRect(720, 590, 121, 71))  # Dialog의 크기 (시작점의 x좌표, 시작점의 y좌표, 가로 크기, 세로 크기)
+        font = QtGui.QFont()  # 폰트 설정
         font.setFamily("배달의민족 주아")
         font.setPointSize(20)
         self.AddPiece.setFont(font)
-        self.AddPiece.setObjectName("AddPiece")                         # 해당 버튼의 이름
+        self.AddPiece.setObjectName("AddPiece")  # 해당 버튼의 이름
         self.AddPiece.clicked.connect(self.button_Click)
         # 윷 던지기 버튼 - 누르면 랜덤으로 윷이 도~모까지 나온다
-        self.Roll = QtWidgets.QPushButton(Dialog)                       # Roll이라는 버튼을 Dialog에 띄움
-        self.Roll.setGeometry(QtCore.QRect(850, 590, 121, 71))          # 버튼의 크기 (시작점의 x좌표, 시작점의 y좌표, 가로 크기, 세로 크기)
-        self.Roll.clicked.connect(self.roll)               
-        font = QtGui.QFont()                                            # 폰트 설정
+        self.Roll = QtWidgets.QPushButton(Dialog)  # Roll이라는 버튼을 Dialog에 띄움
+        self.Roll.setGeometry(QtCore.QRect(850, 590, 121, 71))  # 버튼의 크기 (시작점의 x좌표, 시작점의 y좌표, 가로 크기, 세로 크기)
+        self.Roll.clicked.connect(self.roll)
+        font = QtGui.QFont()  # 폰트 설정
         font.setFamily("배달의민족 주아")
         font.setPointSize(20)
         self.Roll.setFont(font)
-        self.Roll.setObjectName("Roll")                                 # 해당 버튼의 이름
+        self.Roll.setObjectName("Roll")  # 해당 버튼의 이름
 
         # 지정 윷 던지기 글씨
         self.Rolling_Yut = QtWidgets.QLabel(Dialog)
@@ -543,164 +717,179 @@ class UI_Dialog_03(object):
         self.Yut_Board = QtWidgets.QLabel(Dialog)
         self.Yut_Board.setGeometry(QtCore.QRect(70, 60, 611, 611))
         self.Yut_Board.setObjectName("Yut_Board")
-        
+
         self.turn = QtWidgets.QLabel(Dialog)
         self.turn.setGeometry(QtCore.QRect(700, 60, 611, 611))
         self.turn.setObjectName("turn")
-        self.turn.resize(400,20)
+        self.turn.resize(400, 20)
 
-        self.Do = QtWidgets.QLabel(Dialog)                          # 그림 - 도
+        self.Do = QtWidgets.QLabel(Dialog)  # 그림 - 도
         self.Do.setGeometry(QtCore.QRect(780, 480, 131, 101))
         self.Do.setObjectName("Do")
 
-        self.BackDo = QtWidgets.QLabel(Dialog)                      # 그림 - 빽도
+        self.BackDo = QtWidgets.QLabel(Dialog)  # 그림 - 빽도
         self.BackDo.setGeometry(QtCore.QRect(780, 480, 141, 101))
         self.BackDo.setObjectName("BackDo")
 
-        self.Ge = QtWidgets.QLabel(Dialog)                          # 그림 - 개
+        self.Ge = QtWidgets.QLabel(Dialog)  # 그림 - 개
         self.Ge.setGeometry(QtCore.QRect(780, 480, 141, 101))
         self.Ge.setObjectName("Ge")
 
-        self.Gul = QtWidgets.QLabel(Dialog)                         # 걸 그림 - 각 단계별 그림이 있으니 if문 같은것으로 조절하면  될듯
+        self.Gul = QtWidgets.QLabel(Dialog)  # 걸 그림 - 각 단계별 그림이 있으니 if문 같은것으로 조절하면  될듯
         self.Gul.setGeometry(QtCore.QRect(780, 480, 141, 101))
         self.Gul.setObjectName("Gul")
 
-        self.Yut = QtWidgets.QLabel(Dialog)                          # 윷 그림
+        self.Yut = QtWidgets.QLabel(Dialog)  # 윷 그림
         self.Yut.setGeometry(QtCore.QRect(780, 480, 141, 101))
         self.Yut.setObjectName("Yut")
 
-        self.Mo = QtWidgets.QLabel(Dialog)                           # 모 그림
+        self.Mo = QtWidgets.QLabel(Dialog)  # 모 그림
         self.Mo.setGeometry(QtCore.QRect(780, 480, 141, 101))
         self.Mo.setObjectName("Mo")
 
-        
-
-        
         if self.remainedpiece[0] > 0:
             self.Player01 = QtWidgets.QLabel(Dialog)
             self.Player01.setGeometry(QtCore.QRect(690, 40, 141, 151))
             self.Player01.setObjectName("Player01")
-            self.Player01.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player01_1.png\"/></p></body></html>"))
+            self.Player01.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player01_1.png\"/></p></body></html>"))
         if self.remainedpiece[0] > 1:
             self.Player01_2 = QtWidgets.QLabel(Dialog)
             self.Player01_2.setGeometry(QtCore.QRect(750, 40, 141, 151))
             self.Player01_2.setObjectName("Player01_2")
-            self.Player01_2.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player01_1.png\"/></p></body></html>"))
+            self.Player01_2.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player01_1.png\"/></p></body></html>"))
         if self.remainedpiece[0] > 2:
             self.Player01_3 = QtWidgets.QLabel(Dialog)
             self.Player01_3.setGeometry(QtCore.QRect(780, 40, 141, 151))
             self.Player01_3.setObjectName("Player01_3")
-            self.Player01_3.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player01_1.png\"/></p></body></html>"))
+            self.Player01_3.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player01_1.png\"/></p></body></html>"))
         if self.remainedpiece[0] > 3:
             self.Player01_4 = QtWidgets.QLabel(Dialog)
             self.Player01_4.setGeometry(QtCore.QRect(810, 40, 141, 151))
             self.Player01_4.setObjectName("Player01_4")
-            self.Player01_4.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player01_1.png\"/></p></body></html>"))
-        
+            self.Player01_4.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player01_1.png\"/></p></body></html>"))
+
         if self.remainedpiece[0] > 4:
             self.Player01_5 = QtWidgets.QLabel(Dialog)
             self.Player01_5.setGeometry(QtCore.QRect(850, 40, 141, 151))
             self.Player01_5.setObjectName("Player01_5")
-            self.Player01_5.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player01_1.png\"/></p></body></html>"))
-    
+            self.Player01_5.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player01_1.png\"/></p></body></html>"))
 
         # 두 번째 플레이어 - 말 5개
         if self.remainedpiece[1] > 0:
             self.Player02 = QtWidgets.QLabel(Dialog)
             self.Player02.setGeometry(QtCore.QRect(690, 140, 141, 151))
             self.Player02.setObjectName("Player02")
-            self.Player02.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player02_1.png\"/></p></body></html>"))
-      
+            self.Player02.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player02_1.png\"/></p></body></html>"))
+
         if self.remainedpiece[1] > 1:
             self.Player02_2 = QtWidgets.QLabel(Dialog)
             self.Player02_2.setGeometry(QtCore.QRect(750, 140, 141, 151))
             self.Player02_2.setObjectName("Player02_2")
-            self.Player02_2.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player02_1.png\"/></p></body></html>"))
+            self.Player02_2.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player02_1.png\"/></p></body></html>"))
         if self.remainedpiece[1] > 2:
             self.Player02_3 = QtWidgets.QLabel(Dialog)
             self.Player02_3.setGeometry(QtCore.QRect(780, 140, 141, 151))
             self.Player02_3.setObjectName("Player02_3")
-            self.Player02_3.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player02_1.png\"/></p></body></html>"))
-        if self.remainedpiece[1] > 3:    
+            self.Player02_3.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player02_1.png\"/></p></body></html>"))
+        if self.remainedpiece[1] > 3:
             self.Player02_4 = QtWidgets.QLabel(Dialog)
             self.Player02_4.setGeometry(QtCore.QRect(810, 140, 141, 151))
             self.Player02_4.setObjectName("Player02_4")
-            self.Player02_4.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player02_1.png\"/></p></body></html>"))
-        if self.remainedpiece[1] > 4:    
+            self.Player02_4.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player02_1.png\"/></p></body></html>"))
+        if self.remainedpiece[1] > 4:
             self.Player02_5 = QtWidgets.QLabel(Dialog)
             self.Player02_5.setGeometry(QtCore.QRect(850, 140, 141, 151))
             self.Player02_5.setObjectName("Player02_5")
-            self.Player02_5.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player02_1.png\"/></p></body></html>"))
+            self.Player02_5.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player02_1.png\"/></p></body></html>"))
 
         # 세 번째 플레이어 - 말 5개
         if self.remainedpiece[2] > 0:
             self.Player03 = QtWidgets.QLabel(Dialog)
             self.Player03.setGeometry(QtCore.QRect(690, 240, 141, 151))
             self.Player03.setObjectName("Player03")
-            self.Player03.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player03_1.png\"/></p></body></html>"))
+            self.Player03.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player03_1.png\"/></p></body></html>"))
         if self.remainedpiece[2] > 1:
             self.Player03_2 = QtWidgets.QLabel(Dialog)
             self.Player03_2.setGeometry(QtCore.QRect(750, 240, 141, 151))
-            self.Player03_2.setObjectName("Player03_2")     
-            self.Player03_2.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player03_1.png\"/></p></body></html>"))
-        
+            self.Player03_2.setObjectName("Player03_2")
+            self.Player03_2.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player03_1.png\"/></p></body></html>"))
+
         if self.remainedpiece[2] > 2:
             self.Player03_3 = QtWidgets.QLabel(Dialog)
             self.Player03_3.setGeometry(QtCore.QRect(780, 240, 141, 151))
             self.Player03_3.setObjectName("Player03_3")
-            self.Player03_3.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player03_1.png\"/></p></body></html>"))
+            self.Player03_3.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player03_1.png\"/></p></body></html>"))
 
         if self.remainedpiece[2] > 3:
             self.Player03_4 = QtWidgets.QLabel(Dialog)
             self.Player03_4.setGeometry(QtCore.QRect(810, 240, 141, 151))
             self.Player03_4.setObjectName("Player03_4")
-            self.Player03_4.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player03_1.png\"/></p></body></html>"))
-    
+            self.Player03_4.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player03_1.png\"/></p></body></html>"))
+
         if self.remainedpiece[2] > 4:
             self.Player03_5 = QtWidgets.QLabel(Dialog)
             self.Player03_5.setGeometry(QtCore.QRect(850, 240, 141, 151))
             self.Player03_5.setObjectName("Player03_5")
-            self.Player03_5.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player03_1.png\"/></p></body></html>"))
+            self.Player03_5.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player03_1.png\"/></p></body></html>"))
 
         # 네 번째 플레이어 - 말 5개
         if self.remainedpiece[3] > 0:
             self.Player04 = QtWidgets.QLabel(Dialog)
             self.Player04.setGeometry(QtCore.QRect(690, 340, 141, 151))
             self.Player04.setObjectName("Player04")
-            self.Player04.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player04_1.png\"/></p></body></html>"))
+            self.Player04.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player04_1.png\"/></p></body></html>"))
 
         if self.remainedpiece[3] > 1:
             self.Player04_2 = QtWidgets.QLabel(Dialog)
             self.Player04_2.setGeometry(QtCore.QRect(750, 340, 141, 151))
             self.Player04_2.setObjectName("Player04_2")
-            self.Player04_2.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player04_1.png\"/></p></body></html>"))
-      
+            self.Player04_2.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player04_1.png\"/></p></body></html>"))
 
         if self.remainedpiece[3] > 2:
             self.Player04_3 = QtWidgets.QLabel(Dialog)
             self.Player04_3.setGeometry(QtCore.QRect(780, 340, 141, 151))
             self.Player04_3.setObjectName("Player04_3")
-            self.Player04_3.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player04_1.png\"/></p></body></html>"))
+            self.Player04_3.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player04_1.png\"/></p></body></html>"))
 
         if self.remainedpiece[3] > 3:
             self.Player04_4 = QtWidgets.QLabel(Dialog)
             self.Player04_4.setGeometry(QtCore.QRect(810, 340, 141, 151))
             self.Player04_4.setObjectName("Player04_4")
-            self.Player04_4.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player04_1.png\"/></p></body></html>"))
-        
+            self.Player04_4.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player04_1.png\"/></p></body></html>"))
+
         if self.remainedpiece[3] > 4:
             self.Player04_5 = QtWidgets.QLabel(Dialog)
             self.Player04_5.setGeometry(QtCore.QRect(850, 340, 141, 151))
             self.Player04_5.setObjectName("Player04_5")
-            self.Player04_5.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player04_1.png\"/></p></body></html>"))
+            self.Player04_5.setText(
+                _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/player04_1.png\"/></p></body></html>"))
 
         # 여기에서부터는 각 보드의 버튼 0 ~ 28까지 있으며, 그 순서는 yutnori_map의 보드판과 일치
-        self.Btn0 = QtWidgets.QPushButton(Dialog)                # 버튼 생성
-        self.Btn0.setGeometry(QtCore.QRect(560, 550, 93, 101))     # 버튼 위치 및 사이즈
-        self.Btn0.setObjectName("Btn0")                             # 버튼 이름
-        opacity_effect = QGraphicsOpacityEffect(self.Btn0)          
-        opacity_effect.setOpacity(0.1)                              
-        self.Btn0.setGraphicsEffect(opacity_effect)                 
+        self.Btn0 = QtWidgets.QPushButton(Dialog)  # 버튼 생성
+        self.Btn0.setGeometry(QtCore.QRect(560, 550, 93, 101))  # 버튼 위치 및 사이즈
+        self.Btn0.setObjectName("Btn0")  # 버튼 이름
+        opacity_effect = QGraphicsOpacityEffect(self.Btn0)
+        opacity_effect.setOpacity(0.1)
+        self.Btn0.setGraphicsEffect(opacity_effect)
         self.Btn0.clicked.connect(self.button_Click00)
 
         ## 버튼 0 ~ 28까지 생성
@@ -712,7 +901,6 @@ class UI_Dialog_03(object):
         self.Btn1.setGraphicsEffect(opacity_effect)
         self.Btn1.clicked.connect(self.button_Click01)
 
-        
         self.Btn2 = QtWidgets.QPushButton(Dialog)
         self.Btn2.setGeometry(QtCore.QRect(570, 370, 71, 71))
         self.Btn2.setObjectName("Btn2")
@@ -928,14 +1116,12 @@ class UI_Dialog_03(object):
         opacity_effect.setOpacity(0.1)
         self.Btn28.setGraphicsEffect(opacity_effect)
         self.Btn28.clicked.connect(self.button_Click28)
-        
 
-        self.retranslateUi(Dialog)                      # Dialog의 위젯들(label, 버튼 등)에 글씨 및 그림을 넣는 함수 실행
-        QtCore.QMetaObject.connectSlotsByName(Dialog)   # 설정한 이름과 위젯들을 연결
-        return  True
-        
-    
-# 각 버튼 및 레이블의 글자
+        self.retranslateUi(Dialog)  # Dialog의 위젯들(label, 버튼 등)에 글씨 및 그림을 넣는 함수 실행
+        QtCore.QMetaObject.connectSlotsByName(Dialog)  # 설정한 이름과 위젯들을 연결
+        return True
+
+    # 각 버튼 및 레이블의 글자
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
@@ -947,24 +1133,22 @@ class UI_Dialog_03(object):
         self.Gul_btn.setText(_translate("Dialog", "걸"))
         self.Yut_btn.setText(_translate("Dialog", "윷"))
         self.Mo_btn.setText(_translate("Dialog", "모"))
-        self.Yut_Board.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/Yut_Board2.jpg\"/></p></body></html>"))
+        self.Yut_Board.setText(
+            _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/Yut_Board2.jpg\"/></p></body></html>"))
         self.Do.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/DO.png\"/></p></body></html>"))
-        self.BackDo.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/BackDO.png\"/></p></body></html>"))
+        self.BackDo.setText(
+            _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/BackDO.png\"/></p></body></html>"))
         self.Ge.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/GE.png\"/></p></body></html>"))
         self.BackDo_btn.setText(_translate("Dialog", "빽도"))
         self.Gul.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/GUL.png\"/></p></body></html>"))
         self.Yut.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/YUT.png\"/></p></body></html>"))
         self.Mo.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/MO.png\"/></p></body></html>"))
-        
-        
-        
-
- # 여기에서부터는 각 버튼의 글씨
- # 단, 글씨가 있으면 투명도를 낮춰도 지저분하기 때문에 글씨는 제거함
 
 
+# 여기에서부터는 각 버튼의 글씨
+# 단, 글씨가 있으면 투명도를 낮춰도 지저분하기 때문에 글씨는 제거함
 
-
+import myres_rc
 
 
 def UI_Display(Dialog00):  # 한 UI에서 다른 UI띄울 때 사용할 함수
@@ -977,6 +1161,14 @@ def UI_Display(Dialog00):  # 한 UI에서 다른 UI띄울 때 사용할 함수
     sys.exit(app.exec_())
 
 
+import myres_rc
 
+if __name__ == "__main__":
+    import sys
 
-
+    app = QtWidgets.QApplication(sys.argv)
+    Dialog = QtWidgets.QDialog()
+    ui = UI_Dialog_03(3, 3)
+    ui.setupUi(Dialog)
+    Dialog.show()
+    sys.exit(app.exec_())
