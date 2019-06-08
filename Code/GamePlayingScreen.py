@@ -12,9 +12,10 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QGraphicsOpacityEffect
 from PyQt5.QtCore import QCoreApplication
+
+
 import Controller
 import sys
-
 
 class UI_Dialog_03(object):
 
@@ -42,6 +43,9 @@ class UI_Dialog_03(object):
                 string = self.player_name[self.current_turn] + "가 승리했습니다."
                 self.turn.setText(string)
                 self.action = 3
+                opacity_effect = QGraphicsOpacityEffect(self.Exit)
+                opacity_effect.setOpacity(1)
+                self.Exit.setGraphicsEffect(opacity_effect)
             else:
                 string = self.player_name[self.next_turn] + "의 턴 입니다. 윷을 던져주세요."
                 self.turn.setText(string)
@@ -488,6 +492,9 @@ class UI_Dialog_03(object):
                 opacity_effect.setOpacity(0)
                 self.Mo.setGraphicsEffect(opacity_effect)
             self.turn.setText(string)
+
+
+
 
     def backdo(self):
         if self.action == 0:
@@ -1117,6 +1124,15 @@ class UI_Dialog_03(object):
         self.Btn28.setGraphicsEffect(opacity_effect)
         self.Btn28.clicked.connect(self.button_Click28)
 
+
+        self.Exit = QtWidgets.QPushButton(Dialog)
+        self.Exit.setGeometry(QtCore.QRect(800, 700, 181, 61))
+        self.Exit.setObjectName("Exit")
+        opacity_effect = QGraphicsOpacityEffect(self.Exit)
+        opacity_effect.setOpacity(0)
+        self.Exit.setGraphicsEffect(opacity_effect)
+        self.Exit.clicked.connect(QCoreApplication.instance().quit)
+
         self.retranslateUi(Dialog)  # Dialog의 위젯들(label, 버튼 등)에 글씨 및 그림을 넣는 함수 실행
         QtCore.QMetaObject.connectSlotsByName(Dialog)  # 설정한 이름과 위젯들을 연결
         return True
@@ -1133,6 +1149,7 @@ class UI_Dialog_03(object):
         self.Gul_btn.setText(_translate("Dialog", "걸"))
         self.Yut_btn.setText(_translate("Dialog", "윷"))
         self.Mo_btn.setText(_translate("Dialog", "모"))
+        self.Exit.setText(_translate("Dialog", "Exit"))
         self.Yut_Board.setText(
             _translate("Dialog", "<html><head/><body><p><img src=\":/imgs/Yut_Board2.jpg\"/></p></body></html>"))
         self.Do.setText(_translate("Dialog", "<html><head/><body><p><img src=\":/imgs/DO.png\"/></p></body></html>"))
