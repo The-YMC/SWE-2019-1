@@ -111,6 +111,9 @@ class Map():
             self.user_remained[self.user_info] = self.user_remained[self.user_info] -1
             self.change_info(map_index, n_roll, True)
             
+        elif map_index == 0 and self.map_list[map_index][2] == user_info:
+            self.change_info(map_index, 29)
+            
         elif map_index == len(self.map_list) - 1:
             if n_roll < 3:
                 self.change_info(map_index, 25 + n_roll)
