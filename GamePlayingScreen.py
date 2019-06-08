@@ -28,10 +28,10 @@ class UI_Dialog_03(object):
         self.remainedpiece = [n_piece, n_piece, n_piece, n_piece]
         self.n_piece = n_piece
         self.action = 0
-    def map_clicked(self, map_index):
+    def map_clicked(self, map_index, generate = False):
         if self.action == 1:
             self.current_turn = self.next_turn
-            self.viewmapinfo, self.remainedpiece, self.next_turn, self.in_goal, self.winner =self.controller.map_clicked(map_index)
+            self.viewmapinfo, self.remainedpiece, self.next_turn, self.in_goal, self.winner =self.controller.map_clicked(map_index, generate)
             print(self.viewmapinfo, self.remainedpiece)
             self.action = 2
             self.update_ui()
@@ -377,6 +377,8 @@ class UI_Dialog_03(object):
             self.controller.conditional_roll(5)
             self.action = 1
     
+    def button_Click(self):
+        self.map_clicked(0, True)
     def button_Click00(self):
         self.map_clicked(0)
     def button_Click01(self):
@@ -455,7 +457,7 @@ class UI_Dialog_03(object):
         font.setPointSize(20)
         self.AddPiece.setFont(font)
         self.AddPiece.setObjectName("AddPiece")                         # 해당 버튼의 이름
-        self.AddPiece.clicked.connect(self.button_Click00)
+        self.AddPiece.clicked.connect(self.button_Click)
         # 윷 던지기 버튼 - 누르면 랜덤으로 윷이 도~모까지 나온다
         self.Roll = QtWidgets.QPushButton(Dialog)                       # Roll이라는 버튼을 Dialog에 띄움
         self.Roll.setGeometry(QtCore.QRect(850, 590, 121, 71))          # 버튼의 크기 (시작점의 x좌표, 시작점의 y좌표, 가로 크기, 세로 크기)

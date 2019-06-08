@@ -57,7 +57,7 @@ class Map():
         self.in_goal = [0, 0, 0, 0]
         self.winner = -1
         self.n_piece = n_piece
-    def select(self, n_roll, map_index, user_info):
+    def select(self, n_roll, map_index, user_info, generate = False):
         """
         - 'map_index'
             the node selected by user.
@@ -70,14 +70,14 @@ class Map():
         """
         self.user_info = user_info
         self.n_roll = n_roll
-        if map_index == 0 and self.user_remained[user_info] == 0:
+        if generate and self.user_remained[user_info] == 0:
             raise AssertionError("YOU DO NOT HAVE ANY REMAINED PIECE")
             
-        if self.map_list[map_index][2] != user_info and map_index != 0:
+        if self.map_list[map_index][2] != user_info and not (map_index == 0 and generate):
             raise ValueError("YOU SELECTED A WRONG NODE")
         
         if self.n_roll == -1:
-            if map_index == 0 and self.map_list[map_index][2] == user_info:
+            if map_index == 0 and self.map_list[map_index][2] == user_info and not generate:
                 if self.map_list[map_index][1] == '19':
                     self.change_info(map_index, 19)
                     
@@ -100,8 +100,10 @@ class Map():
                     self.change_info(map_index, 23)
                 else:
                     self.change_info(map_index, 14)
-            elif map_index == 0:
-                self.change_info(map_index, 19)
+            elif map_index == 0 and generate:
+                self.user_remained[self.user_info] = self.user_remained[self.user_info] -1
+                self.change_info(map_index, 1, True)
+                
             else:
                 self.change_info(map_index, map_index -1)
             
@@ -210,8 +212,6 @@ class Map():
                 self.user_remained[self.map_list[destination][2]] = self.user_remained[self.map_list[destination][2]] + self.map_list[destination][3]
                 self.map_list[destination][2] = self.user_info
                 self.map_list[destination][3] = 1
-                self.map_list[departure][2] = -1
-                self.map_list[departure][3] = 0
         
         elif destination > 28:
             self.in_goal[self.user_info] = self.in_goal[self.user_info] + self.map_list[departure][3]

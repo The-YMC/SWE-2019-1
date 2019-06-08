@@ -29,9 +29,9 @@ class Contoller():
     def conditional_roll(self, num):
         self.n_roll = num
         
-    def map_clicked(self, map_index):
+    def map_clicked(self, map_index, generate = False):
         if self.n_roll != 0 :
             print(self.n_roll, map_index, self.next_turn)
-            self.map_info, self.remained_piece, self.next_turn, self.in_goal, self.winner  = self.map.select(self.n_roll, map_index, self.next_turn)
+            self.map_info, self.remained_piece, self.next_turn, self.in_goal, self.winner  = self.map.select(self.n_roll, map_index, self.next_turn, generate)
             self.n_roll = 0  
             return self.map_info, self.remained_piece, self.next_turn, self.in_goal, self.winner
