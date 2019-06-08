@@ -21,13 +21,11 @@ class UI_Dialog_02(object):
     def ChangeUI2(self):                                               # 한 UI에서 다른 UI띄울 때 사용할 함수
         self.app = QtWidgets.QApplication(sys.argv)                    #윈도우 창을 띄우기 위함
         self.Dialog = QtWidgets.QDialog()                              # Dialog(윈도우 창이라고 생각하면 됨)을 사용하기 위함
-        a = gp(self.PlayerNum.value(), self.Player1_PieceNum.value())                                                       # GamePlayingScreen 객체 선언
+        a = gp(self.PlayerNum.value(), self.Player1_PieceNum.value(),self.lineEdit.text(),self.lineEdit_2.text(),self.lineEdit_3.text(),self.lineEdit_4.text())                                                       # GamePlayingScreen 객체 선언
         self.ui = a                                                    # ui에 해당 클래스( GamePlayingScreend의 UI_Dialog_023)를 연결
         self.ui.setupUi(self.Dialog)                                   # 해당 ui의 setupUi함수를 실행 -
         #Dialog.hide()
-        self.Dialog.show()                                             # 새로운 창을 띄움
-    
-        
+        self.Dialog.show()             
 
     def setupUi(self, Dialog):
         Dialog.setObjectName("PlayerInfo")             #Dialog의 이름 , 변경시 해당 이름으로 접근 , Dialog는 우리가 보는 윈도우 창이라고 생각하면 됨
@@ -189,10 +187,6 @@ class UI_Dialog_02(object):
         self.PlayerNum_Txt.setObjectName("PlayerNum_Txt")
 
 
-        self.pushButton = QtWidgets.QPushButton(Dialog)                 # '확인' 버튼 - 플레이어 명수, 말의 갯수 입력 후 확인을 누르면 플레이어 명수대로 아래에 플레이어 이름을 입력하는 UI가 뜨게
-        self.pushButton.setGeometry(QtCore.QRect(430, 260, 131, 41))
-        self.pushButton.setObjectName("pushButton")
-
         # 여태까지 만든 위젯들(버튼 , label, graphicsView)등을 위로 올림 , 뒤늦게 raise한 것이 맨 위에 있다
         self.graphicsView.raise_()
         self.label_3.raise_()
@@ -212,8 +206,6 @@ class UI_Dialog_02(object):
         self.PieceNum.raise_()
         self.PlayerNum.raise_()
         self.PlayerNum_Txt.raise_()
-        self.pushButton.raise_()
-
         self.retranslateUi(Dialog)                                 #위젯들한테 글씨 붙여주는것
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
@@ -231,7 +223,6 @@ class UI_Dialog_02(object):
         self.ExitBtn.setText(_translate("Dialog", "EXIT"))
         self.PieceNum.setText(_translate("Dialog", "말의 갯수"))
         self.PlayerNum_Txt.setText(_translate("Dialog", "플레이어 명수"))
-        self.pushButton.setText(_translate("Dialog", "확인"))
 
 
 

@@ -21,7 +21,8 @@ class UI_Dialog_03(object):
     # 이 아래의 함수 3개와 temp_list는 만들다가 못 만든 것...T^T 지우셔도 됩니다
     
     # UI 설정
-    def __init__(self, n_player, n_piece):
+    def __init__(self, n_player, n_piece, name1 ,name2, name3, name4):
+        self.player_name = [name1, name2, name3, name4]
         self.controller = Controller.Contoller(n_player, n_piece)
         self.current_turn = 0
         self.next_turn = 0
@@ -36,11 +37,11 @@ class UI_Dialog_03(object):
             self.action = 2
             self.update_ui()
             if self.winner > -1:
-                string = str(self.current_turn + 1) + "가 승리헀습니다."
+                string = self.player_name[self.current_turn] + "가 승리했습니다."
                 self.turn.setText(string)
                 self.action = 3
             else:
-                string = str(self.next_turn + 1) + "의 턴 입니다. 윷을 던져주세요."
+                string = self.player_name[self.next_turn] + "의 턴 입니다. 윷을 던져주세요."
                 self.turn.setText(string)
             
     def update_ui(self):
