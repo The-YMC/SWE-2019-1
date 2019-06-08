@@ -226,7 +226,6 @@ class UI_Dialog_02(object):
 
 
 
-import myres_rc
 
 if __name__ == "__main__":
     import sys

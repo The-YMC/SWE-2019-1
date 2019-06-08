@@ -13,7 +13,6 @@
 # @Yeomin
 
 from PyQt5 import QtCore, QtGui, QtWidgets # PyqT5를 사용하기 위한 라이브러리
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton # PyqT5를 사용하기 위한 라이브러리 2
 from PyQt5.QtCore import QCoreApplication #Pyqt에서 창을 종료하는 함수를 실행하기 위한 라이브러리
 from PlayerInfoScreen import UI_Dialog_02 as pi     # 띄워진 창을 바꾸기 위해 두번째 씬인 PlayerInfoScreen을 임포트
 import sys
@@ -84,7 +83,6 @@ class UI_Dialog_01(object):
         self.retranslateUi(Dialog)                                  # Dialog의 위젯들(label, 버튼 등)에 글씨 및 그림을 넣는 함수 실행
         QtCore.QMetaObject.connectSlotsByName(Dialog)               # 설정한 이름과 위젯들을 연결
 
-        import myres_rc
 
     # Dialog의 위젯들(label, 버튼 등)에 글씨 및 그림을 넣음
     def retranslateUi(self, Dialog):

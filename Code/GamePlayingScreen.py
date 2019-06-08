@@ -11,7 +11,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QGraphicsOpacityEffect
-from PyQt5.QtCore import QCoreApplication
 import Controller
 import sys
 
