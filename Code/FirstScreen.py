@@ -15,6 +15,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets # PyqT5를 사용하기 위한 라이브러리
 from PyQt5.QtCore import QCoreApplication #Pyqt에서 창을 종료하는 함수를 실행하기 위한 라이브러리
 from PlayerInfoScreen import UI_Dialog_02 as pi     # 띄워진 창을 바꾸기 위해 두번째 씬인 PlayerInfoScreen을 임포트
+import myres_rc
 import sys
 
 class UI_Dialog_01(object):

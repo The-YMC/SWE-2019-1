@@ -13,6 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QGraphicsOpacityEffect
 import Controller
 import sys
+import myres_rc
 
 class UI_Dialog_03(object):
 
@@ -961,7 +962,6 @@ class UI_Dialog_03(object):
  # 여기에서부터는 각 버튼의 글씨
  # 단, 글씨가 있으면 투명도를 낮춰도 지저분하기 때문에 글씨는 제거함
 
-import myres_rc
 
 
 
@@ -976,16 +976,7 @@ def UI_Display(Dialog00):  # 한 UI에서 다른 UI띄울 때 사용할 함수
     Dialog.show()
     sys.exit(app.exec_())
 
-import myres_rc
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = UI_Dialog_03(3, 3)
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())
 
 
 

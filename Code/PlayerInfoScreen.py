@@ -15,6 +15,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets # PyqT5를 사용하기 위한 라이
 from PyQt5.QtCore import QCoreApplication # PyqT5를 사용하기 위한 라이브러리 2
 from GamePlayingScreen import UI_Dialog_03 as gp # GamePlayingScreen을 임포트
 import sys
+import myres_rc
 
 class UI_Dialog_02(object):
 
